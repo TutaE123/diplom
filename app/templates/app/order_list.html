@@ -1,0 +1,38 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block card %}
+
+    {% for order in orders %}
+    
+    <div class="ticket-card">
+        <div class="ticket-header">
+          <h2><a href="{% url 'order_detail' pk=order.pk %}">Трансферная поездка</a></h2>
+          <p>Дата: {{ order.date }}</p>
+          
+        </div>
+        <div class="ticket-details">
+          <div class="ticket-info">
+            <h3>Откуда</h3>
+            <p>{{ order.place_start|linebreaksbr }}</p>
+          </div>
+          <div class="ticket-info">
+            <h3>Куда</h3>
+            <p>{{ order.place_end|linebreaksbr }}</p>
+          </div>
+          
+          <div class="ticket-info">
+            <h3>Время</h3>
+            <p>{{ order.date|date:'H:i'  }}</p>
+          </div>
+
+        </div>
+        <div class="ticket-footer">
+          <p>Номер билета: {{ order.pk }}</p>
+          <p>Стоимость: {{ order.tariff|linebreaksbr }}</p>
+          <p>Статус: {{ order.status }}</p>
+        </div>
+      </div>
+    {% endfor %}
+
+{% endblock %}

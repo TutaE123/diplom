@@ -1,0 +1,43 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <div class='body'>
+        <div class="form-container">
+            {% if form.errors %}
+                <p class="error-message">Неправильно введены данные</p>
+            {% endif %}
+            <form method="post" action="{% url 'signup' %}">
+                {% csrf_token %}
+                <table class="form-table">
+                    <tr>
+                        <td>Имя</td>
+                        <td>{{ form.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Фамилия</td>
+                        <td>{{ form.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Придумайте логин</td>
+                        <td>{{ form.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Электронная почта</td>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Придумайте пароль</td>
+                        <td>{{ form.password1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>Повторите пароль</td>
+                        <td>{{ form.password2 }}</td>
+                    </tr>
+                </table>
+                <button type="submit" class="submit-button">Зарегистрироваться</button>
+            </form>
+            <p class="register-link">Есть аккаунт? <a href="{% url 'login' %}">Войдите</a>.</p>
+        </div>
+    </div>
+{% endblock %}
+

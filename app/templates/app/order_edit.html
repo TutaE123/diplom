@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+
+{% block contentauth %}
+    <h1 class='center'>Заявка {{ order.pk }}</h1>
+    <div class='body'>
+    
+    {% if form.errors %}
+        <p class="error-message">Неправильно введены данные</p>
+    {% endif %}
+    <div class="form-container">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            <table class="form-table">
+                <tr>
+                    <td>Класс авто</td>
+                    <td>{{ form.car }}</td>
+                </tr>
+                <tr>
+                    <td>Место отправления</td>
+                    <td>{{ form.place_start }}</td>
+                </tr>
+                <tr>
+                    <td>Место назначения</td>
+                    <td>{{ form.place_end }}</td>
+                </tr>
+                <tr>
+                    <td>Количество пассажиров</td>
+                    <td>{{ form.numder }}</td>
+                </tr>
+                <tr>
+                    <td>Дата отправки</td>
+                    <td>{{ form.date }}</td>
+                </tr>
+            </table>
+            <button type="submit" class="submit-button">Создать</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+    <header>
+        <div>
+            <a class="flex" href="{% url "index" %}">
+                <img src="{% static "img/TT.png" %}"/>
+                <img src="{% static "img/TT-Transfer.png" %}"/>
+            </a>
+        </div>
+        <div class="div">
+            <nav>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'order_new' %}" class="top-menu">Создать заявку</span></a>
+                    <a href="{% url "order_list" %}" class="top-menu">Список заявок</span></a>
+                    <a  href="{% url 'logout' %}" class="top-menu">
+                        
+                        {{ user.username }} <small>(Выход)</small>
+                    
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="top-menu">Войти</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    {% if user.is_authenticated %}
+        {% block card %}
+        {% endblock %}
+        {% else %}
+        {% block content %}
+        {% endblock %}
+    {% endif %}
+
+    {% block contentauth %}
+    {% endblock contentauth %}
+
+    <footer>
+        <div>
+            <img src="{% static "img/TT.png" %}"/>
+        </div>     
+        <div class='flexfoter'>
+            <div>
+                <p>Контакты: </p>
+            </div>
+            <div>
+                <p>Телефон: </p>
+                <p> 8-800-600-74-81</p>
+            </div>
+            <div>
+                <p>E-mail: </p>
+                <a class='foter' href="mailto:info@tttransfer.ru">info@tttransfer.ru</a>              
+            </div>
+            <div>
+                <p>Сайт: </p>
+                <a class='foter' href="https://tttransfer.ru/index.html">https://tttransfer.ru/index.html</a>              
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
