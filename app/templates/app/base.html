@@ -32,17 +32,22 @@
             </nav>
         </div>
     </header>
+    <div style='flex: 1;'>
     {% if user.is_authenticated %}
         {% block card %}
         {% endblock %}
+        
+        
         {% else %}
-        {% block content %}
-        {% endblock %}
-    {% endif %}
 
+
+        
+    {% endif %}
+    {% block content %}
+    {% endblock %}
     {% block contentauth %}
     {% endblock contentauth %}
-
+  </div>
     <footer>
         <div>
             <img src="{% static "img/TT.png" %}"/>
